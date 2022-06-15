@@ -1,7 +1,8 @@
 TODO
 ====
 1. Rewrite fields to data object like Data::Form::?
-2.
+2. Add tests.
+3.
 
 Applied
 =======
