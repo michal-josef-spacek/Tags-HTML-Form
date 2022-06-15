@@ -14,14 +14,23 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['title'], @params);
+		['fields', 'submit', 'title'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
+
+	# Fields.
+	$self->{'fields'} = [];
+
+	# Submit button.
+	$self->{'submit'} = 'Save';
 
 	# Title.
 	$self->{'title'} = undef;
 
 	# Process params.
 	set_params($self, @{$object_params_ar});
+
+	# Check fields.
+	# TODO
 
 	# Object.
 	return $self;
@@ -37,32 +46,50 @@ sub _process {
 
 		['b', 'fieldset'],
 		$self->{'title'} ? (
-		['b', 'legend'],
-		['d', $self->{'title'}],
-		['e', 'legend'],
+			['b', 'legend'],
+			['d', $self->{'title'}],
+			['e', 'legend'],
 		) : (),
+	);
 
-		# TODO
-		['b', 'p'],
-		['b', 'label'],
-		['a', 'for', 'category'],
-		['e', 'label'],
-		['d', 'Category'],
-		['b', 'input'],
-		['a', 'type', 'text'],
-		['a', 'name', 'category'],
-		['a', 'id', 'category'],
-		['e', 'input'],
-		['e', 'p'],
+	if (@{$self->{'fields'}}) {
+		$self->{'tags'}->put(
+			['b', 'p'],
+		);
+	}
 
-		['b', 'p'],
-		['b', 'button'],
-		['a', 'type', 'submit'],
-		['a', 'name', 'page'],
-		['a', 'value', 'category'],
-		['d', 'View category'],
-		['e', 'button'],
-		['e', 'p'],
+	foreach my $field_hr (@{$self->{'fields'}}) {
+		# TODO Rewrite to data object.
+		$self->{'tags'}->put(
+			['b', 'label'],
+			['a', 'for', $field_hr->{'id'}],
+			['e', 'label'],
+			['d', $field_hr->{'text'}],
+			['b', 'input'],
+			['a', 'type', $field_hr->{'type'}],
+			['a', 'name', $field_hr->{'id'}],
+			['a', 'id', $field_hr->{'id'}],
+			['e', 'input'],
+		);
+	}
+
+	if (@{$self->{'fields'}}) {
+		$self->{'tags'}->put(
+			['e', 'p'],
+		);
+	}
+
+	$self->{'tags'}->put(
+		$self->{'submit'} ? (
+			['b', 'p'],
+			['b', 'button'],
+			['a', 'type', 'submit'],
+			['a', 'name', 'page'],
+			['a', 'value', 'category'],
+			['d', $self->{'submit'}],
+			['e', 'button'],
+			['e', 'p'],
+		) : (),
 
 		['e', 'fieldset'],
 		['e', 'form'],
