@@ -19,5 +19,6 @@ META.yml
 README
 t/Tags-HTML-Form/01-use.t
 t/Tags-HTML-Form/02-version.t
+t/Tags-HTML-Form/03-new.t
 xt/Tags-HTML-Form/01-pod_coverage.t
 xt/Tags-HTML-Form/02-pod.t

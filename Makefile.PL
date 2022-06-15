@@ -23,6 +23,7 @@ requires 'Tags::HTML' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Tags-HTML-Form/issues';
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Tags-HTML-Form';
 resources 'repository' => 'git://github.com/michal-josef-spacek/Tags-HTML-Form';
+test_requires 'Tags::Output::Raw' => 0;
 test_requires 'Test::More' => 0;
 test_requires 'Test::NoWarnings' => 0;
 tests_recursive;
