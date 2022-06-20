@@ -23,6 +23,12 @@ sub new {
 	# Submit button.
 	$self->{'submit'} = 'Save';
 
+	# Submit name.
+	$self->{'submit_name'} = undef;
+
+	# Submit value.
+	$self->{'submit_value'} = undef;
+
 	# Title.
 	$self->{'title'} = undef;
 
@@ -84,8 +90,8 @@ sub _process {
 			['b', 'p'],
 			['b', 'button'],
 			['a', 'type', 'submit'],
-			['a', 'name', 'page'],
-			['a', 'value', 'category'],
+			['a', 'name', $self->{'submit_name'}],
+			['a', 'value', $self->{'submit_value'}],
 			['d', $self->{'submit'}],
 			['e', 'button'],
 			['e', 'p'],
