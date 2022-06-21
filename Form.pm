@@ -14,7 +14,7 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['fields', 'submit', 'title'], @params);
+		['fields', 'submit', 'submit_name', 'submit_value', 'title'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
 
 	# Fields.
@@ -90,8 +90,12 @@ sub _process {
 			['b', 'p'],
 			['b', 'button'],
 			['a', 'type', 'submit'],
-			['a', 'name', $self->{'submit_name'}],
-			['a', 'value', $self->{'submit_value'}],
+			defined $self->{'submit_name'} ? (
+				['a', 'name', $self->{'submit_name'}],
+			) : (),
+			defined $self->{'submit_value'} ? (
+				['a', 'value', $self->{'submit_value'}],
+			) : (),
 			['d', $self->{'submit'}],
 			['e', 'button'],
 			['e', 'p'],
