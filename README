@@ -1,0 +1,112 @@
+NAME
+    Tags::HTML::Form - Tags helper for form.
+
+SYNOPSIS
+     use Tags::HTML::Form;
+
+     my $obj = Tags::HTML::Form->new(%params);
+     $obj->process;
+     $obj->process_css;
+
+METHODS
+  "new"
+     my $obj = Tags::HTML::Form->new(%params);
+
+    Constructor.
+
+    *       "css"
+
+            'CSS::Struct::Output' object for process_css processing.
+
+            Default value is undef.
+
+    *       "css_form"
+
+            Main CSS class of this block.
+
+            Default value is 'form'.
+
+    *       "tags"
+
+            'Tags::Output' object.
+
+            Default value is undef.
+
+    *       "title"
+
+            Form title.
+
+            Default value is undef = without title.
+
+  "process"
+     $obj->process;
+
+    Process Tags structure for output with form.
+
+    Returns undef.
+
+  "process_css"
+     $obj->process_css;
+
+    Process CSS::Struct structure for output.
+
+    Returns undef.
+
+ERRORS
+     new():
+             From Class::Utils::set_params():
+                     Unknown parameter '%s'.
+             From Tags::HTML::new():
+                     Parameter 'tags' must be a 'Tags::Output::*' class.
+
+     process():
+             From Tags::HTML::process():
+                     Parameter 'tags' isn't defined.
+
+EXAMPLE
+     use strict;
+     use warnings;
+
+     use CSS::Struct::Output::Indent;
+     use Tags::HTML::Form;
+     use Tags::Output::Indent;
+
+     # Object.
+     my $css = CSS::Struct::Output::Indent->new;
+     my $tags = Tags::Output::Indent->new;
+     my $obj = Tags::HTML::Form->new(
+             'css' => $css,
+             'tags' => $tags,
+     );
+
+     # Process pager.
+     $obj->process;
+     $obj->process_css;
+
+     # Print out.
+     print $tags->flush;
+     print "\n\n";
+     print $css->flush;
+
+     # Output:
+     # TODO
+
+DEPENDENCIES
+    Class::Utils, Error::Pure, Readonly, Tags::HTML, Unicode::UTF8.
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/Tags-HTML-Form>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © Michal Josef Špaček 2022
+
+    BSD 2-Clause License
+
+VERSION
+    0.01
+
