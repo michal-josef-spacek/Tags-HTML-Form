@@ -17,6 +17,7 @@ is_deeply(
 	$ret_ar,
 	[
 		['b', 'form'],
+		['a', 'class', 'form'],
 		['a', 'method', 'GET'],
 		['b', 'fieldset'],
 		['b', 'p'],
@@ -43,6 +44,7 @@ is_deeply(
 	$ret_ar,
 	[
 		['b', 'form'],
+		['a', 'class', 'form'],
 		['a', 'method', 'GET'],
 		['b', 'fieldset'],
 		['b', 'p'],
@@ -69,6 +71,7 @@ is_deeply(
 	$ret_ar,
 	[
 		['b', 'form'],
+		['a', 'class', 'form'],
 		['a', 'method', 'GET'],
 		['b', 'fieldset'],
 		['b', 'legend'],

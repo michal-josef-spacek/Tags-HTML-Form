@@ -14,8 +14,11 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['fields', 'submit', 'submit_name', 'submit_value', 'title'], @params);
+		['css_form', 'fields', 'submit', 'submit_name', 'submit_value', 'title'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
+
+	# CSS class for form.
+	$self->{'css_form'} = 'form';
 
 	# Fields.
 	$self->{'fields'} = [];
@@ -48,6 +51,7 @@ sub _process {
 
 	$self->{'tags'}->put(
 		['b', 'form'],
+		['a', 'class', $self->{'css_form'}],
 		['a', 'method', 'GET'],
 
 		['b', 'fieldset'],
@@ -112,6 +116,9 @@ sub _process_css {
 	my $self = shift;
 
 	$self->{'css'}->put(
+		['s', '.'.$self->{'css_form'}],
+		# TODO
+		['e'],
 	);
 
 	return;
