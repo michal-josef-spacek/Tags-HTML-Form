@@ -46,6 +46,10 @@ is_deeply(
 		['d', 'border-radius', '4px'],
 		['d', 'box-sizing', 'border-box'],
 		['e'],
+
+		['s', '.form-required'],
+		['d', 'color', 'red'],
+		['e'],
 	],
 	'Pager CSS code (stub).',
 );
