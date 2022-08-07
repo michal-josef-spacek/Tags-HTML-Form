@@ -2,7 +2,8 @@ TODO
 ====
 2. Add tests.
 4. Move fields and submit button from constructor to process().
-8.
+8. Implement size in input
+9.
 
 Applied
 =======
