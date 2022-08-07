@@ -5,6 +5,9 @@ use strict;
 use warnings;
 
 use Class::Utils qw(set_params split_params);
+use Data::HTML::Button;
+use Error::Pure qw(err);
+use Scalar::Util qw(blessed);
 
 our $VERSION = 0.01;
 
@@ -23,14 +26,13 @@ sub new {
 	# Fields.
 	$self->{'fields'} = [];
 
-	# Submit button.
-	$self->{'submit'} = 'Save';
-
-	# Submit name.
-	$self->{'submit_name'} = undef;
-
-	# Submit value.
-	$self->{'submit_value'} = undef;
+	# Submit.
+	$self->{'submit'} = Data::HTML::Button->new(
+		'data' => [
+			['d', 'Save'],
+		],
+		'type' => 'submit',
+	);
 
 	# Title.
 	$self->{'title'} = undef;
@@ -39,7 +41,34 @@ sub new {
 	set_params($self, @{$object_params_ar});
 
 	# Check fields.
-	# TODO
+	if (! defined $self->{'fields'}) {
+		err "Parameter 'fields' is required.";
+	}
+	if (ref $self->{'fields'} ne 'ARRAY') {
+		err "Parameter 'fields' must be a array.";
+	}
+	foreach my $field (@{$self->{'fields'}}) {
+		if (! defined $field
+			|| ! blessed($field)
+			|| ! $field->isa('Data::HTML::Form::Input')) {
+
+			err "Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.";
+		}
+	}
+
+	# Check submit.
+	if (! defined $self->{'submit'}) {
+		err "Parameter 'submit' is required.";
+	}
+	if (! blessed($self->{'submit'})
+		|| (! $self->{'submit'}->isa('Data::HTML::Form::Input')
+		&& ! $self->{'submit'}->isa('Data::HTML::Button'))) {
+
+		err "Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.";
+	}
+	if ($self->{'submit'}->type ne 'submit') {
+		err "Parameter 'submit' instance has bad type.";
+	}
 
 	# Object.
 	return $self;
@@ -50,6 +79,7 @@ sub _process {
 	my $self = shift;
 
 	$self->{'tags'}->put(
+		# TODO Data::HTML::Form
 		['b', 'form'],
 		['a', 'class', $self->{'css_form'}],
 		['a', 'method', 'GET'],
@@ -68,18 +98,20 @@ sub _process {
 		);
 	}
 
-	foreach my $field_hr (@{$self->{'fields'}}) {
-		# TODO Rewrite to data object.
+	foreach my $field (@{$self->{'fields'}}) {
 		$self->{'tags'}->put(
 			['b', 'label'],
-			['a', 'for', $field_hr->{'id'}],
+			['a', 'for', $field->id],
+			['d', $field->label],
+			$field->required ? (
+				['b', 'span'],
+				['a', 'class', $self->{'css_form'}.'-required'],
+				['d', '*'],
+				['e', 'span'],
+			) : (),
 			['e', 'label'],
-			['d', $field_hr->{'text'}],
-			['b', 'input'],
-			['a', 'type', $field_hr->{'type'}],
-			['a', 'name', $field_hr->{'id'}],
-			['a', 'id', $field_hr->{'id'}],
-			['e', 'input'],
+
+			$self->_tags_input($field),
 		);
 	}
 
@@ -90,20 +122,13 @@ sub _process {
 	}
 
 	$self->{'tags'}->put(
-		$self->{'submit'} ? (
-			['b', 'p'],
-			['b', 'button'],
-			['a', 'type', 'submit'],
-			defined $self->{'submit_name'} ? (
-				['a', 'name', $self->{'submit_name'}],
-			) : (),
-			defined $self->{'submit_value'} ? (
-				['a', 'value', $self->{'submit_value'}],
-			) : (),
-			['d', $self->{'submit'}],
-			['e', 'button'],
-			['e', 'p'],
-		) : (),
+		['b', 'p'],
+		$self->{'submit'}->isa('Data::HTML::Form::Input') ? (
+			$self->_tags_input($self->{'submit'}),
+		) : (
+			$self->_tags_button($self->{'submit'}),
+		),
+		['e', 'p'],
 
 		['e', 'fieldset'],
 		['e', 'form'],
@@ -122,6 +147,49 @@ sub _process_css {
 	);
 
 	return;
+}
+
+sub _tags_button {
+	my ($self, $object) = @_;
+
+	return (
+		['b', 'button'],
+		['a', 'type', $self->{'submit'}->type],
+		defined $self->{'submit'}->name ? (
+			['a', 'name', $self->{'submit'}->name],
+		) : (),
+		defined $self->{'submit'}->value ? (
+			['a', 'value', $self->{'submit'}->value],
+		) : (),
+		@{$self->{'submit'}->data},
+		['e', 'button'],
+	);
+}
+
+sub _tags_input {
+	my ($self, $object) = @_;
+
+	return (
+		['b', 'input'],
+		defined $object->css_class ? (
+			['a', 'class', $object->css_class],
+		) : (),
+		['a', 'type', $object->type],
+		defined $object->id ? (
+			['a', 'name', $object->id],
+			['a', 'id', $object->id],
+		) : (),
+		defined $object->value ? (
+			['a', 'value', $object->value],
+		) : (),
+		defined $object->checked ? (
+			['a', 'checked', 'checked'],
+		) : (),
+		defined $object->placeholder ? (
+			['a', 'placeholder', $object->placeholder],
+		) : (),
+		['e', 'input'],
+	);
 }
 
 1;
@@ -203,6 +271,12 @@ Returns undef.
                  Unknown parameter '%s'.
          From Tags::HTML::new():
                  Parameter 'tags' must be a 'Tags::Output::*' class.
+         Parameter 'fields' is required.
+         Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.
+         Parameter 'fields' must be a array.
+         Parameter 'submit' instance has bad type.
+         Parameter 'submit' is required.
+         Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.
 
  process():
          From Tags::HTML::process():
@@ -235,15 +309,24 @@ Returns undef.
  print $css->flush;
 
  # Output:
- # TODO
+ # <form class="form" method="GET">
+ #   <fieldset>
+ #     <p>
+ #       <button type="submit">
+ #         Save
+ #       </button>
+ #     </p>
+ #   </fieldset>
+ # </form>
+ # 
+ # .form {
+ # }
 
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
 L<Error::Pure>,
-L<Readonly>,
-L<Tags::HTML>,
-L<Unicode::UTF8>.
+L<Scalar::Util>.
 
 =head1 REPOSITORY
 
