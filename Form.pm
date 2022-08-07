@@ -17,7 +17,7 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['css_form', 'fields', 'submit', 'submit_name', 'submit_value', 'title'], @params);
+		['css_form', 'fields', 'submit', 'title'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
 
 	# CSS class for form.
