@@ -26,6 +26,19 @@ METHODS
 
             Default value is 'form'.
 
+    *       "fields"
+
+            Array of form items.
+
+            All items must be a 'Data::HTML::Form::Input' objects.
+
+    *       "submit"
+
+            Data object for submit.
+
+            Could be a 'Data::HTML::Form::Input' or 'Data::HTML::Button'
+            instance.
+
     *       "tags"
 
             'Tags::Output' object.
@@ -58,6 +71,12 @@ ERRORS
                      Unknown parameter '%s'.
              From Tags::HTML::new():
                      Parameter 'tags' must be a 'Tags::Output::*' class.
+             Parameter 'fields' is required.
+             Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.
+             Parameter 'fields' must be a array.
+             Parameter 'submit' instance has bad type.
+             Parameter 'submit' is required.
+             Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.
 
      process():
              From Tags::HTML::process():
@@ -89,10 +108,21 @@ EXAMPLE
      print $css->flush;
 
      # Output:
-     # TODO
+     # <form class="form" method="GET">
+     #   <fieldset>
+     #     <p>
+     #       <button type="submit">
+     #         Save
+     #       </button>
+     #     </p>
+     #   </fieldset>
+     # </form>
+     # 
+     # .form {
+     # }
 
 DEPENDENCIES
-    Class::Utils, Error::Pure, Readonly, Tags::HTML, Unicode::UTF8.
+    Class::Utils, Data::HTML::Button Error::Pure, Scalar::Util, Tags::HTML.
 
 REPOSITORY
     <https://github.com/michal-josef-spacek/Tags-HTML-Form>
@@ -103,7 +133,7 @@ AUTHOR
     <http://skim.cz>
 
 LICENSE AND COPYRIGHT
-    © Michal Josef Špaček 2022
+    © 2022 Michal Josef Špaček
 
     BSD 2-Clause License
 
