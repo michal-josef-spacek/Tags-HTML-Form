@@ -220,6 +220,9 @@ sub _tags_input {
 		defined $object->placeholder ? (
 			['a', 'placeholder', $object->placeholder],
 		) : (),
+		defined $object->size ? (
+			['a', 'size', $object->size],
+		) : (),
 		['e', 'input'],
 	);
 }
