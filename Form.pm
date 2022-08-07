@@ -231,6 +231,9 @@ sub _tags_input {
 		defined $object->size ? (
 			['a', 'size', $object->size],
 		) : (),
+		defined $object->readonly ? (
+			['a', 'readonly', 'readonly'],
+		) : (),
 		['e', 'input'],
 	);
 }
