@@ -5,6 +5,7 @@ author:
 build_requires:
   CSS::Struct::Output::Structure: 0
   Data::HTML::Button: 0
+  Data::HTML::Form: 0
   Data::HTML::Form::Input: 0
   ExtUtils::MakeMaker: 6.59
   Tags::Output::Raw: 0
@@ -29,6 +30,7 @@ no_index:
 requires:
   Class::Utils: 0
   Data::HTML::Button: 0
+  Data::HTML::Form: 0
   Error::Pure: 0
   Scalar::Util: 0
   Tags::HTML: 0

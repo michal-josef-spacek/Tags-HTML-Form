@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 use Data::HTML::Button;
+use Data::HTML::Form;
 use Data::HTML::Form::Input;
 use Tags::HTML::Form;
 use Tags::Output::Structure;
@@ -20,7 +21,7 @@ is_deeply(
 	[
 		['b', 'form'],
 		['a', 'class', 'form'],
-		['a', 'method', 'GET'],
+		['a', 'method', 'get'],
 		['b', 'fieldset'],
 		['b', 'p'],
 		['b', 'button'],
@@ -52,7 +53,7 @@ is_deeply(
 	[
 		['b', 'form'],
 		['a', 'class', 'form'],
-		['a', 'method', 'GET'],
+		['a', 'method', 'get'],
 		['b', 'fieldset'],
 		['b', 'p'],
 		['b', 'button'],
@@ -70,7 +71,10 @@ is_deeply(
 $tags = Tags::Output::Structure->new;
 $obj = Tags::HTML::Form->new(
 	'tags' => $tags,
-	'title' => 'Title',
+	'form' => Data::HTML::Form->new(
+		'css_class' => 'form',
+		'label' => 'Title',
+	),
 );
 $obj->process;
 $ret_ar = $tags->flush(1);
@@ -79,7 +83,7 @@ is_deeply(
 	[
 		['b', 'form'],
 		['a', 'class', 'form'],
-		['a', 'method', 'GET'],
+		['a', 'method', 'get'],
 		['b', 'fieldset'],
 		['b', 'legend'],
 		['d', 'Title'],
@@ -112,7 +116,7 @@ is_deeply(
 	[
 		['b', 'form'],
 		['a', 'class', 'form'],
-		['a', 'method', 'GET'],
+		['a', 'method', 'get'],
 		['b', 'fieldset'],
 		['b', 'p'],
 		['b', 'input'],

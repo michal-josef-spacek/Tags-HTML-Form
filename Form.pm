@@ -6,6 +6,7 @@ use warnings;
 
 use Class::Utils qw(set_params split_params);
 use Data::HTML::Button;
+use Data::HTML::Form;
 use Error::Pure qw(err);
 use Scalar::Util qw(blessed);
 
@@ -17,14 +18,16 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['css_form', 'fields', 'submit', 'title'], @params);
+		['fields', 'form', 'submit'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
-
-	# CSS class for form.
-	$self->{'css_form'} = 'form';
 
 	# Fields.
 	$self->{'fields'} = [];
+
+	# Form.
+	$self->{'form'} = Data::HTML::Form->new(
+		'css_class' => 'form',
+	);
 
 	# Submit.
 	$self->{'submit'} = Data::HTML::Button->new(
@@ -33,9 +36,6 @@ sub new {
 		],
 		'type' => 'submit',
 	);
-
-	# Title.
-	$self->{'title'} = undef;
 
 	# Process params.
 	set_params($self, @{$object_params_ar});
@@ -54,6 +54,16 @@ sub new {
 
 			err "Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.";
 		}
+	}
+
+	# Check form.
+	if (! defined $self->{'form'}) {
+		err "Parameter 'form' is required.";
+	}
+	if (! blessed($self->{'form'})
+		|| ! $self->{'form'}->isa('Data::HTML::Form')) {
+
+		err "Parameter 'form' must be a 'Data::HTML::Form' instance.";
 	}
 
 	# Check submit.
@@ -79,15 +89,16 @@ sub _process {
 	my $self = shift;
 
 	$self->{'tags'}->put(
-		# TODO Data::HTML::Form
 		['b', 'form'],
-		['a', 'class', $self->{'css_form'}],
-		['a', 'method', 'GET'],
+		defined $self->{'form'}->css_class ? (
+			['a', 'class', $self->{'form'}->css_class],
+		) : (),
+		['a', 'method', $self->{'form'}->method],
 
 		['b', 'fieldset'],
-		$self->{'title'} ? (
+		$self->{'form'}->{'label'} ? (
 			['b', 'legend'],
-			['d', $self->{'title'}],
+			['d', $self->{'form'}->{'label'}],
 			['e', 'legend'],
 		) : (),
 	);
@@ -255,17 +266,19 @@ Constructor.
 
 Default value is undef.
 
-=item * C<css_form>
-
-Main CSS class of this block.
-
-Default value is 'form'.
-
 =item * C<fields>
 
 Array of form items.
 
 All items must be a 'Data::HTML::Form::Input' objects.
+
+=item * C<form>
+
+Data object for form.
+
+Could ve a 'Data::HTML::Form' instance.
+
+Default value is instance with 'form' css class.
 
 =item * C<submit>
 
@@ -273,17 +286,13 @@ Data object for submit.
 
 Could be a 'Data::HTML::Form::Input' or 'Data::HTML::Button' instance.
 
+Default value is instance with 'Save' submit value.
+
 =item * C<tags>
 
 'Tags::Output' object.
 
 Default value is undef.
-
-=item * C<title>
-
-Form title.
-
-Default value is undef = without title.
 
 =back
 
@@ -313,6 +322,8 @@ Returns undef.
          Parameter 'fields' is required.
          Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.
          Parameter 'fields' must be a array.
+         Parameter 'form' is required.
+         Parameter 'form' must be a 'Data::HTML::Form' instance.
          Parameter 'submit' instance has bad type.
          Parameter 'submit' is required.
          Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.
@@ -364,7 +375,8 @@ Returns undef.
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
-L<Data::HTML::Button>
+L<Data::HTML::Form>,
+L<Data::HTML::Button>,
 L<Error::Pure>,
 L<Scalar::Util>,
 L<Tags::HTML>.
