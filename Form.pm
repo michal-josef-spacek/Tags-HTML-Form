@@ -65,6 +65,9 @@ sub new {
 
 		err "Parameter 'form' must be a 'Data::HTML::Form' instance.";
 	}
+	if (! defined $self->{'form'}->{'css_class'}) {
+		err "Paremeter 'form' must define 'css_class' parameter.";
+	}
 
 	# Check submit.
 	if (! defined $self->{'submit'}) {
@@ -116,7 +119,7 @@ sub _process {
 			['d', $field->label],
 			$field->required ? (
 				['b', 'span'],
-				['a', 'class', $self->{'css_form'}.'-required'],
+				['a', 'class', $self->{'form'}->css_class.'-required'],
 				['d', '*'],
 				['e', 'span'],
 			) : (),
@@ -152,17 +155,17 @@ sub _process_css {
 	my $self = shift;
 
 	$self->{'css'}->put(
-		['s', '.'.$self->{'css_form'}],
+		['s', '.'.$self->{'form'}->css_class],
 		['d', 'border-radius', '5px'],
 		['d', 'background-color', '#f2f2f2'],
 		['d', 'padding', '20px'],
 		['e'],
 
-		['s', '.'.$self->{'css_form'}.' input[type=submit]:hover'],
+		['s', '.'.$self->{'form'}->css_class.' input[type=submit]:hover'],
 		['d', 'background-color', '#45a049'],
 		['e'],
 
-		['s', '.'.$self->{'css_form'}.' input[type=submit]'],
+		['s', '.'.$self->{'form'}->css_class.' input[type=submit]'],
 		['d', 'width', '100%'],
 		['d', 'background-color', '#4CAF50'],
 		['d', 'color', 'white'],
@@ -173,7 +176,7 @@ sub _process_css {
 		['d', 'cursor', 'pointer'],
 		['e'],
 
-		['s', '.'.$self->{'css_form'}.' input[type=text], select'],
+		['s', '.'.$self->{'form'}->css_class.' input[type=text], select'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],
@@ -324,6 +327,7 @@ Returns undef.
          Parameter 'fields' must be a array.
          Parameter 'form' is required.
          Parameter 'form' must be a 'Data::HTML::Form' instance.
+         Paremeter 'form' must define 'css_class' parameter.
          Parameter 'submit' instance has bad type.
          Parameter 'submit' is required.
          Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.
