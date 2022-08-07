@@ -47,6 +47,10 @@ is_deeply(
 		['d', 'box-sizing', 'border-box'],
 		['e'],
 
+		['s', '.form input[type=checkbox]+label'],
+		['d', 'display', 'block'],
+		['e'],
+
 		['s', '.form-required'],
 		['d', 'color', 'red'],
 		['e'],

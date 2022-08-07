@@ -177,6 +177,10 @@ sub _process_css {
 		['d', 'box-sizing', 'border-box'],
 		['e'],
 
+		['s', '.'.$self->{'form'}->css_class.' input[type=checkbox]+label'],
+		['d', 'display', 'block'],
+		['e'],
+
 		['s', '.'.$self->{'form'}->css_class.'-required'],
 		['d', 'color', 'red'],
 		['e'],
