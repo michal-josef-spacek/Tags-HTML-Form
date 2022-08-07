@@ -234,6 +234,18 @@ Main CSS class of this block.
 
 Default value is 'form'.
 
+=item * C<fields>
+
+Array of form items.
+
+All items must be a 'Data::HTML::Form::Input' objects.
+
+=item * C<submit>
+
+Data object for submit.
+
+Could be a 'Data::HTML::Form::Input' or 'Data::HTML::Button' instance.
+
 =item * C<tags>
 
 'Tags::Output' object.
