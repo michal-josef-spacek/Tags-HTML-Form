@@ -172,21 +172,7 @@ sub _process_css {
 		['d', 'cursor', 'pointer'],
 		['e'],
 
-		['s', '.'.$self->{'form'}->css_class.' input[type=text], select'],
-		['d', 'width', '100%'],
-		['d', 'padding', '12px 20px'],
-		['d', 'margin', '8px 0'],
-		['d', 'display', 'inline-block'],
-		['d', 'border', '1px solid #ccc'],
-		['d', 'border-radius', '4px'],
-		['d', 'box-sizing', 'border-box'],
-		['e'],
-
-		['s', '.'.$self->{'form'}->css_class.' input[type=checkbox]+label'],
-		['d', 'display', 'block'],
-		['e'],
-
-		['s', '.'.$self->{'form'}->css_class.' textarea'],
+		['s', '.'.$self->{'form'}->css_class.' input, select, textarea'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],
