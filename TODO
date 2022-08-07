@@ -2,7 +2,6 @@ TODO
 ====
 2. Add tests.
 4. Move fields and submit button from constructor to process().
-6. Add CSS
 7. Rewrite to Data::HTML::Form data object
 8.
 
@@ -17,4 +16,7 @@ OK [20220807] skim
 5. Implement Data::HTML::Button and add support for it.
    Important is possibility of element inside <button> element in contrast of
    input submit type.
+OK [20220807] skim
+
+6. Add CSS
 OK [20220807] skim
