@@ -2,7 +2,8 @@ TODO
 ====
 2. Add tests.
 4. Move fields and submit button from constructor to process().
-9.
+9. Optimize CSS
+10.
 
 Applied
 =======
