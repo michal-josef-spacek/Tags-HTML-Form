@@ -18,11 +18,8 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['fields', 'form', 'submit'], @params);
+		['form', 'submit'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
-
-	# Fields.
-	$self->{'fields'} = [];
 
 	# Form.
 	$self->{'form'} = Data::HTML::Form->new(
@@ -39,22 +36,6 @@ sub new {
 
 	# Process params.
 	set_params($self, @{$object_params_ar});
-
-	# Check fields.
-	if (! defined $self->{'fields'}) {
-		err "Parameter 'fields' is required.";
-	}
-	if (ref $self->{'fields'} ne 'ARRAY') {
-		err "Parameter 'fields' must be a array.";
-	}
-	foreach my $field (@{$self->{'fields'}}) {
-		if (! defined $field
-			|| ! blessed($field)
-			|| ! $field->isa('Data::HTML::Form::Input')) {
-
-			err "Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.";
-		}
-	}
 
 	# Check form.
 	if (! defined $self->{'form'}) {
@@ -89,7 +70,17 @@ sub new {
 
 # Process 'Tags'.
 sub _process {
-	my $self = shift;
+	my ($self, @fields) = @_;
+
+	# Check fields.
+	foreach my $field (@fields) {
+		if (! defined $field
+			|| ! blessed($field)
+			|| ! $field->isa('Data::HTML::Form::Input')) {
+
+			err "Form item must be a 'Data::HTML::Form::Input' instance.";
+		}
+	}
 
 	$self->{'tags'}->put(
 		['b', 'form'],
@@ -106,13 +97,13 @@ sub _process {
 		) : (),
 	);
 
-	if (@{$self->{'fields'}}) {
+	if (@fields) {
 		$self->{'tags'}->put(
 			['b', 'p'],
 		);
 	}
 
-	foreach my $field (@{$self->{'fields'}}) {
+	foreach my $field (@fields) {
 		$self->{'tags'}->put(
 			['b', 'label'],
 			['a', 'for', $field->id],
@@ -129,7 +120,7 @@ sub _process {
 		);
 	}
 
-	if (@{$self->{'fields'}}) {
+	if (@fields) {
 		$self->{'tags'}->put(
 			['e', 'p'],
 		);
@@ -322,9 +313,6 @@ Returns undef.
                  Unknown parameter '%s'.
          From Tags::HTML::new():
                  Parameter 'tags' must be a 'Tags::Output::*' class.
-         Parameter 'fields' is required.
-         Parameter 'fields' item must be a 'Data::HTML::Form::Input' instance.
-         Parameter 'fields' must be a array.
          Parameter 'form' is required.
          Parameter 'form' must be a 'Data::HTML::Form' instance.
          Paremeter 'form' must define 'css_class' parameter.
@@ -335,6 +323,7 @@ Returns undef.
  process():
          From Tags::HTML::process():
                  Parameter 'tags' isn't defined.
+                 Form item must be a 'Data::HTML::Form::Input' instance.
 
 =head1 EXAMPLE
 
