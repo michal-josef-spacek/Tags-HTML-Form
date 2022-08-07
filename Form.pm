@@ -249,6 +249,9 @@ sub _tags_input {
 		defined $object->readonly ? (
 			['a', 'readonly', 'readonly'],
 		) : (),
+		defined $object->disabled ? (
+			['a', 'disabled', 'disabled'],
+		) : (),
 		['e', 'input'],
 	);
 }
