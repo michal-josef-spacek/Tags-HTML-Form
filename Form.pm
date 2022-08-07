@@ -325,8 +325,10 @@ Returns undef.
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
+L<Data::HTML::Button>
 L<Error::Pure>,
-L<Scalar::Util>.
+L<Scalar::Util>,
+L<Tags::HTML>.
 
 =head1 REPOSITORY
 
