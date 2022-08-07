@@ -76,7 +76,8 @@ sub _process {
 	foreach my $field (@fields) {
 		if (! defined $field
 			|| ! blessed($field)
-			|| ! $field->isa('Data::HTML::Form::Input')) {
+			|| (! $field->isa('Data::HTML::Form::Input')
+			&& ! $field->isa('Data::HTML::Textarea'))) {
 
 			err "Form item must be a 'Data::HTML::Form::Input' instance.";
 		}
@@ -116,7 +117,11 @@ sub _process {
 			) : (),
 			['e', 'label'],
 
-			$self->_tags_input($field),
+			$field->isa('Data::HTML::Form::Input') ? (
+				$self->_tags_input($field),
+			) : (
+				$self->_tags_textarea($field),
+			),
 		);
 	}
 
@@ -181,6 +186,16 @@ sub _process_css {
 		['d', 'display', 'block'],
 		['e'],
 
+		['s', '.'.$self->{'form'}->css_class.' textarea'],
+		['d', 'width', '100%'],
+		['d', 'padding', '12px 20px'],
+		['d', 'margin', '8px 0'],
+		['d', 'display', 'inline-block'],
+		['d', 'border', '1px solid #ccc'],
+		['d', 'border-radius', '4px'],
+		['d', 'box-sizing', 'border-box'],
+		['e'],
+
 		['s', '.'.$self->{'form'}->css_class.'-required'],
 		['d', 'color', 'red'],
 		['e'],
@@ -235,6 +250,40 @@ sub _tags_input {
 			['a', 'readonly', 'readonly'],
 		) : (),
 		['e', 'input'],
+	);
+}
+
+sub _tags_textarea {
+	my ($self, $object) = @_;
+
+	return (
+		['b', 'textarea'],
+		defined $object->css_class ? (
+			['a', 'class', $object->css_class],
+		) : (),
+		defined $object->id ? (
+			['a', 'name', $object->id],
+			['a', 'id', $object->id],
+		) : (),
+		defined $object->value ? (
+			['a', 'value', $object->value],
+		) : (),
+		defined $object->placeholder ? (
+			['a', 'placeholder', $object->placeholder],
+		) : (),
+		defined $object->readonly ? (
+			['a', 'readonly', 'readonly'],
+		) : (),
+		defined $object->disabled ? (
+			['a', 'disabled', 'disabled'],
+		) : (),
+		defined $object->cols ? (
+			['a', 'cols', $object->cols],
+		) : (),
+		defined $object->rows ? (
+			['a', 'rows', $object->rows],
+		) : (),
+		['e', 'textarea'],
 	);
 }
 
