@@ -238,6 +238,12 @@ sub _tags_input {
 		defined $object->disabled ? (
 			['a', 'disabled', 'disabled'],
 		) : (),
+		defined $object->min ? (
+			['a', 'min', $object->min],
+		) : (),
+		defined $object->max ? (
+			['a', 'max', $object->max],
+		) : (),
 		['e', 'input'],
 	);
 }
