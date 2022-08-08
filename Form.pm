@@ -88,6 +88,9 @@ sub _process {
 		defined $self->{'form'}->css_class ? (
 			['a', 'class', $self->{'form'}->css_class],
 		) : (),
+		defined $self->{'form'}->action ? (
+			['a', 'action', $self->{'form'}->action],
+		) : (),
 		['a', 'method', $self->{'form'}->method],
 
 		['b', 'fieldset'],
