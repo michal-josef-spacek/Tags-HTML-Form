@@ -109,13 +109,11 @@ EXAMPLE
 
      # Output:
      # <form class="form" method="GET">
-     #   <fieldset>
-     #     <p>
-     #       <button type="submit">
-     #         Save
-     #       </button>
-     #     </p>
-     #   </fieldset>
+     #   <p>
+     #     <button type="submit">
+     #       Save
+     #     </button>
+     #   </p>
      # </form>
      # 
      # .form {

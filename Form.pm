@@ -93,8 +93,8 @@ sub _process {
 		) : (),
 		['a', 'method', $self->{'form'}->method],
 
-		['b', 'fieldset'],
 		$self->{'form'}->{'label'} ? (
+			['b', 'fieldset'],
 			['b', 'legend'],
 			['d', $self->{'form'}->{'label'}],
 			['e', 'legend'],
@@ -143,7 +143,9 @@ sub _process {
 		),
 		['e', 'p'],
 
-		['e', 'fieldset'],
+		$self->{'form'}->{'label'} ? (
+			['e', 'fieldset'],
+		) : (),
 		['e', 'form'],
 	);
 
@@ -414,13 +416,11 @@ Returns undef.
 
  # Output:
  # <form class="form" method="GET">
- #   <fieldset>
- #     <p>
- #       <button type="submit">
- #         Save
- #       </button>
- #     </p>
- #   </fieldset>
+ #   <p>
+ #     <button type="submit">
+ #       Save
+ #     </button>
+ #   </p>
  # </form>
  # 
  # .form {
