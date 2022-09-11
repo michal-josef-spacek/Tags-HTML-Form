@@ -5,7 +5,7 @@ SYNOPSIS
      use Tags::HTML::Form;
 
      my $obj = Tags::HTML::Form->new(%params);
-     $obj->process;
+     $obj->process(@fields);
      $obj->process_css;
 
 METHODS
@@ -19,12 +19,6 @@ METHODS
             'CSS::Struct::Output' object for process_css processing.
 
             Default value is undef.
-
-    *       "fields"
-
-            Array of form items.
-
-            All items must be a 'Data::HTML::Form::Input' objects.
 
     *       "form"
 
@@ -50,9 +44,15 @@ METHODS
             Default value is undef.
 
   "process"
-     $obj->process;
+     $obj->process(@fields);
 
-    Process Tags structure for output with form.
+    Process Tags structure for fields defined in @fields to output.
+
+    Accepted items in @fields are objects:
+
+    *   Data::HTML::Form::Input
+
+    *   Data::HTML::Textarea
 
     Returns undef.
 

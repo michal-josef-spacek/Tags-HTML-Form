@@ -304,7 +304,7 @@ Tags::HTML::Form - Tags helper for form.
  use Tags::HTML::Form;
 
  my $obj = Tags::HTML::Form->new(%params);
- $obj->process;
+ $obj->process(@fields);
  $obj->process_css;
 
 =head1 METHODS
@@ -322,12 +322,6 @@ Constructor.
 'CSS::Struct::Output' object for L<process_css> processing.
 
 Default value is undef.
-
-=item * C<fields>
-
-Array of form items.
-
-All items must be a 'Data::HTML::Form::Input' objects.
 
 =item * C<form>
 
@@ -355,9 +349,19 @@ Default value is undef.
 
 =head2 C<process>
 
- $obj->process;
+ $obj->process(@fields);
 
-Process Tags structure for output with form.
+Process Tags structure for fields defined in C<@fields> to output.
+
+Accepted items in C<@fields> are objects:
+
+=over
+
+=item * L<Data::HTML::Form::Input>
+
+=item * L<Data::HTML::Textarea>
+
+=back
 
 Returns undef.
 
