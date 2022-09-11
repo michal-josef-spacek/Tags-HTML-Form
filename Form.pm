@@ -109,16 +109,20 @@ sub _process {
 
 	foreach my $field (@fields) {
 		$self->{'tags'}->put(
-			['b', 'label'],
-			['a', 'for', $field->id],
-			['d', $field->label],
-			$field->required ? (
-				['b', 'span'],
-				['a', 'class', $self->{'form'}->css_class.'-required'],
-				['d', '*'],
-				['e', 'span'],
+			$field->label ? (
+				['b', 'label'],
+				$field->id ? (
+					['a', 'for', $field->id],
+				) : (),
+				['d', $field->label],
+				$field->required ? (
+					['b', 'span'],
+					['a', 'class', $self->{'form'}->css_class.'-required'],
+					['d', '*'],
+					['e', 'span'],
+				) : (),
+				['e', 'label'],
 			) : (),
-			['e', 'label'],
 
 			$field->isa('Data::HTML::Form::Input') ? (
 				$self->_tags_input($field),
