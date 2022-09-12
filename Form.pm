@@ -47,7 +47,7 @@ sub new {
 		err "Parameter 'form' must be a 'Data::HTML::Form' instance.";
 	}
 	if (! defined $self->{'form'}->{'css_class'}) {
-		err "Paremeter 'form' must define 'css_class' parameter.";
+		err "Parameter 'form' must define 'css_class' parameter.";
 	}
 
 	# Check submit.
@@ -386,7 +386,7 @@ Returns undef.
                  Parameter 'tags' must be a 'Tags::Output::*' class.
          Parameter 'form' is required.
          Parameter 'form' must be a 'Data::HTML::Form' instance.
-         Paremeter 'form' must define 'css_class' parameter.
+         Parameter 'form' must define 'css_class' parameter.
          Parameter 'submit' instance has bad type.
          Parameter 'submit' is required.
          Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.
