@@ -1,7 +1,6 @@
 TODO
 ====
 2. Add tests.
-4. Move fields and submit button from constructor to process().
 9. Optimize CSS
 10. Example to doc as psgi server.
 11.
@@ -27,3 +26,6 @@ OK [20220807] skim
 
 8. Implement size in input
 OK [20220807] skim
+
+4. Move fields and submit button from constructor to process().
+OK [20220912] skim
