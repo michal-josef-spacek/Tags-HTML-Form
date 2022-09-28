@@ -232,7 +232,7 @@ sub _tags_input {
 		defined $object->value ? (
 			['a', 'value', $object->value],
 		) : (),
-		defined $object->checked ? (
+		$object->checked ? (
 			['a', 'checked', 'checked'],
 		) : (),
 		defined $object->placeholder ? (
