@@ -1,4 +1,5 @@
 0.03
+ - Fix minimal dependencies.
 
 0.02 2022-09-28T19:21:22+02:00
  - Fix checkbox with checked 0/1.
