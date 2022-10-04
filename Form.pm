@@ -420,7 +420,7 @@ Returns undef.
          'tags' => $tags,
  );
 
- # Process pager.
+ # Process form.
  $obj->process;
  $obj->process_css;
 

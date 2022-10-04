@@ -1,6 +1,7 @@
 0.03
  - Add tests for errors in process() and process_css().
  - Add tests for Tags::HTML constructor errors.
+ - Fix comment in example.
  - Fix ERRORS section in doc.
  - Fix minimal dependencies.
 
