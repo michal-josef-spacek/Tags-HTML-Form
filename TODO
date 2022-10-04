@@ -4,7 +4,9 @@ TODO
 9. Optimize CSS
 10. Example to doc as psgi server.
 11. Rewrite to Tags::HTML::Input, which handle element.
-12.
+12. Look to CSS selector '$css-class input, textarea' in Form. If select
+   >>$css_class textarea<< or simple textarea.
+13.
 
 Applied
 =======
