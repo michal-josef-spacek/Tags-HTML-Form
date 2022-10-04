@@ -1,5 +1,6 @@
 0.03
  - Add missing error to Tags::HTML::Form ERRORS section.
+ - Add tests for errors in process() and process_css().
  - Add tests for Tags::HTML constructor errors.
  - Fix minimal dependencies.
 
