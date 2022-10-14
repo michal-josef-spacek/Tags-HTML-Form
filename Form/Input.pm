@@ -65,6 +65,14 @@ sub _process {
 sub _process_css {
 	my ($self, $input) = @_;
 
+	# Check input.
+	if (! defined $input
+		|| ! blessed($input)
+		|| ! $input->isa('Data::HTML::Form::Input')) {
+
+		err "Input object must be a 'Data::HTML::Form::Input' instance.";
+	}
+
 	my $css_class = '';
 	if (defined $input->css_class) {
 		$css_class = '.'.$input->css_class;
@@ -177,6 +185,7 @@ Returns undef.
  process_css():
          From Tags::HTML::process_css():
                  Parameter 'css' isn't defined.
+         Input object must be a 'Data::HTML::Form::Input' instance.
 
 =head1 EXAMPLE
 
