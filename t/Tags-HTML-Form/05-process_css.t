@@ -53,7 +53,7 @@ is_deeply(
 		['d', 'color', 'red'],
 		['e'],
 	],
-	'Pager CSS code (stub).',
+	'Form CSS code (stub).',
 );
 
 # Test.
