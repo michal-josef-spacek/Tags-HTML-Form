@@ -1,4 +1,5 @@
 0.03
+ - Add Tags::HTML::Form::Input module for input element.
  - Add tests for errors in process() and process_css().
  - Add tests for Tags::HTML constructor errors.
  - Fix comment in example.
