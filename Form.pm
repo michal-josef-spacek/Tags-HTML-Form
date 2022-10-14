@@ -269,9 +269,6 @@ sub _tags_textarea {
 			['a', 'name', $object->id],
 			['a', 'id', $object->id],
 		) : (),
-		defined $object->value ? (
-			['a', 'value', $object->value],
-		) : (),
 		defined $object->placeholder ? (
 			['a', 'placeholder', $object->placeholder],
 		) : (),
@@ -286,6 +283,9 @@ sub _tags_textarea {
 		) : (),
 		defined $object->rows ? (
 			['a', 'rows', $object->rows],
+		) : (),
+		defined $object->value ? (
+			['d', $object->value],
 		) : (),
 		['e', 'textarea'],
 	);
