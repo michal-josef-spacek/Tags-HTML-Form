@@ -8,7 +8,7 @@ use Class::Utils qw(set_params split_params);
 use Error::Pure qw(err);
 use Scalar::Util qw(blessed);
 
-our $VERSION = 0.04;
+our $VERSION = 0.05;
 
 # Process 'Tags'.
 sub _process {
@@ -278,6 +278,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.04
+0.05
 
 =cut
