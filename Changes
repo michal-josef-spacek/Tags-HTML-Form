@@ -1,4 +1,5 @@
 0.04
+ - Fix minimal version of Tags::HTML.
 
 0.03 2022-10-14T12:53:54+02:00
  - Add Tags::HTML::Form::Input module for input element.
