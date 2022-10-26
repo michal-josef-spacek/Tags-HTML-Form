@@ -89,8 +89,7 @@ __END__
 
 =head1 NAME
 
-TODO
-Tags::HTML::Form::Select::Option - Tags helper for form input element.
+Tags::HTML::Form::Select::Option - Tags helper for form option element.
 
 =head1 SYNOPSIS
 
@@ -126,19 +125,21 @@ Default value is undef.
 
 =head2 C<process>
 
- $obj->process($input);
+ $obj->process($option);
 
-Process Tags structure for fields defined in C<@fields> to output.
+Process Tags structure for C<$option> to output.
 
-Accepted C<$input> is L<Data::HTML::Form::Select::Option>.
+Accepted C<$option> is L<Data::HTML::Form::Select::Option>.
 
 Returns undef.
 
 =head2 C<process_css>
 
- $obj->process_css;
+ $obj->process_css($option);
 
-Process CSS::Struct structure for output.
+Process CSS::Struct structure for C<$option> to output.
+
+Accepted C<$option> is L<Data::HTML::Form::Select::Option>.
 
 Returns undef.
 
@@ -161,7 +162,7 @@ Returns undef.
 
 =head1 EXAMPLE
 
-=for comment filename=create_and_print_input.pl
+=for comment filename=create_and_print_option.pl
 
  use strict;
  use warnings;
@@ -181,14 +182,15 @@ Returns undef.
          'tags' => $tags,
  );
 
- # Data object for input.
- my $input = Data::HTML::Form::Select::Option->new(
-         'css_class' => 'form-input',
+ # Data object for option.
+ my $option = Data::HTML::Form::Select::Option->new(
+         'css_class' => 'form-option',
+         'data' => 'Option',
  );
 
- # Process input.
- $obj->process($input);
- $obj->process_css($input);
+ # Process option.
+ $obj->process($option);
+ $obj->process_css($option);
 
  # Print out.
  print "HTML:\n";
@@ -199,31 +201,12 @@ Returns undef.
 
  # Output:
  # HTML:
- # <input class="form-input" type="text" />
+ # <option class="form-option">
+ #   Option
+ # </option>
  #
  # CSS:
- # input.form-input[type=submit]:hover {
- #         background-color: #45a049;
- # }
- # input.form-input[type=submit] {
- #         width: 100%;
- #         background-color: #4CAF50;
- #         color: white;
- #         padding: 14px 20px;
- #         margin: 8px 0;
- #         border: none;
- #         border-radius: 4px;
- #         cursor: pointer;
- # }
- # input.form-input {
- #         width: 100%;
- #         padding: 12px 20px;
- #         margin: 8px 0;
- #         display: inline-block;
- #         border: 1px solid #ccc;
- #         border-radius: 4px;
- #         box-sizing: border-box;
- # }
+ # TODO
 
 =head1 DEPENDENCIES
 
