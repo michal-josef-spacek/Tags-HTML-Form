@@ -1,4 +1,4 @@
-0.05
+0.05 2022-10-26T02:36:47+02:00
  - Add Select and Option objects.
  - Fix data_type parameter for Button.
  - Fix doc in Input object.
