@@ -3,7 +3,6 @@ TODO
 2. Add tests.
 9. Optimize CSS
 10. Example to doc as psgi server.
-11. Rewrite to Tags::HTML::Form::Input, which handle element.
 12. Look to CSS selector '$css-class input, textarea' in Form. If select
    >>$css_class textarea<< or simple textarea.
 13. Helper for textarea element.
@@ -34,3 +33,6 @@ OK [20220807] skim
 
 4. Move fields and submit button from constructor to process().
 OK [20220912] skim
+
+11. Rewrite to Tags::HTML::Form::Input, which handle element.
+OK [20221014] skim
