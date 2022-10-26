@@ -73,15 +73,7 @@ sub _process_css {
 	}
 
 	$self->{'css'}->put(
-#		['s', 'option'.$css_class],
-#		['d', 'width', '100%'],
-#		['d', 'padding', '12px 20px'],
-#		['d', 'margin', '8px 0'],
-#		['d', 'display', 'inline-block'],
-#		['d', 'border', '1px solid #ccc'],
-#		['d', 'border-radius', '4px'],
-#		['d', 'box-sizing', 'border-box'],
-#		['e'],
+		# TODO Implement consistent CSS.
 	);
 
 	return;
