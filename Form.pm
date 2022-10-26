@@ -13,7 +13,7 @@ use Scalar::Util qw(blessed);
 use Tags::HTML::Form::Input;
 use Tags::HTML::Form::Select;
 
-our $VERSION = 0.05;
+our $VERSION = 0.06;
 
 # Constructor.
 sub new {
@@ -506,6 +506,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.05
+0.06
 
 =cut
