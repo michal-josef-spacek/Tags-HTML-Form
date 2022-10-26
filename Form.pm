@@ -31,6 +31,7 @@ sub new {
 		'data' => [
 			['d', 'Save'],
 		],
+		'data_type' => 'tags',
 		'type' => 'submit',
 	);
 
