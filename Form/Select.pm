@@ -107,16 +107,15 @@ __END__
 
 =head1 NAME
 
-TODO
-Tags::HTML::Form::Select - Tags helper for form input element.
+Tags::HTML::Form::Select - Tags helper for form select element.
 
 =head1 SYNOPSIS
 
  use Tags::HTML::Form::Select;
 
  my $obj = Tags::HTML::Form::Select->new(%params);
- $obj->process($input);
- $obj->process_css;
+ $obj->process($select);
+ $obj->process_css($select);
 
 =head1 METHODS
 
@@ -144,19 +143,21 @@ Default value is undef.
 
 =head2 C<process>
 
- $obj->process($input);
+ $obj->process($select);
 
-Process Tags structure for fields defined in C<@fields> to output.
+Process Tags structure for C<$select> data object to output.
 
-Accepted C<$input> is L<Data::HTML::Form::Select>.
+Accepted C<$select> is L<Data::HTML::Form::Select>.
 
 Returns undef.
 
 =head2 C<process_css>
 
- $obj->process_css;
+ $obj->process_css($select);
 
-Process CSS::Struct structure for output.
+Process CSS::Struct structure for C<$select> data object to output.
+
+Accepted C<$select> is L<Data::HTML::Form::Select>.
 
 Returns undef.
 
@@ -179,7 +180,7 @@ Returns undef.
 
 =head1 EXAMPLE
 
-=for comment filename=create_and_print_input.pl
+=for comment filename=create_and_print_select.pl
 
  use strict;
  use warnings;
@@ -199,14 +200,14 @@ Returns undef.
          'tags' => $tags,
  );
 
- # Data object for input.
- my $input = Data::HTML::Form::Select->new(
-         'css_class' => 'form-input',
+ # Data object for select.
+ my $select = Data::HTML::Form::Select->new(
+         'css_class' => 'form-select',
  );
 
- # Process input.
- $obj->process($input);
- $obj->process_css($input);
+ # Process select.
+ $obj->process($select);
+ $obj->process_css($select);
 
  # Print out.
  print "HTML:\n";
@@ -217,23 +218,10 @@ Returns undef.
 
  # Output:
  # HTML:
- # <input class="form-input" type="text" />
+ # <select class="form-select" type="text" />
  #
  # CSS:
- # input.form-input[type=submit]:hover {
- #         background-color: #45a049;
- # }
- # input.form-input[type=submit] {
- #         width: 100%;
- #         background-color: #4CAF50;
- #         color: white;
- #         padding: 14px 20px;
- #         margin: 8px 0;
- #         border: none;
- #         border-radius: 4px;
- #         cursor: pointer;
- # }
- # input.form-input {
+ # select.form-select {
  #         width: 100%;
  #         padding: 12px 20px;
  #         margin: 8px 0;
@@ -248,7 +236,8 @@ Returns undef.
 L<Class::Utils>,
 L<Error::Pure>,
 L<Scalar::Util>,
-L<Tags::HTML>.
+L<Tags::HTML>,
+L<Tags::HTML::Form::Select::Option>.
 
 =head1 REPOSITORY
 
