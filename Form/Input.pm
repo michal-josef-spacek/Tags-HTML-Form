@@ -126,7 +126,7 @@ Tags::HTML::Form::Input - Tags helper for form input element.
 
  my $obj = Tags::HTML::Form::Input->new(%params);
  $obj->process($input);
- $obj->process_css;
+ $obj->process_css($input);
 
 =head1 METHODS
 
@@ -164,7 +164,7 @@ Returns undef.
 
 =head2 C<process_css>
 
- $obj->process_css;
+ $obj->process_css($input);
 
 Process CSS::Struct structure for output.
 

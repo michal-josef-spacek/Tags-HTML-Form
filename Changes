@@ -1,4 +1,5 @@
 0.05
+ - Fix doc in Input object.
 
 0.04 2022-10-18T11:01:35+02:00
  - Fix minimal version of Tags::HTML.
