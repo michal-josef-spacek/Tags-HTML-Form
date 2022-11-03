@@ -129,7 +129,7 @@ sub _process {
 		) : (),
 		['a', 'method', $self->{'form'}->method],
 
-		$self->{'form'}->{'label'} ? (
+		defined $self->{'form'}->{'label'} ? (
 			['b', 'fieldset'],
 			['b', 'legend'],
 			['d', $self->{'form'}->{'label'}],
@@ -145,7 +145,7 @@ sub _process {
 
 	foreach my $field (@fields) {
 		$self->{'tags'}->put(
-			$field->label ? (
+			defined $field->label ? (
 				['b', 'label'],
 				$field->id ? (
 					['a', 'for', $field->id],
@@ -187,7 +187,7 @@ sub _process {
 	$self->{'tags'}->put(
 		['e', 'p'],
 
-		$self->{'form'}->{'label'} ? (
+		defined $self->{'form'}->{'label'} ? (
 			['e', 'fieldset'],
 		) : (),
 		['e', 'form'],

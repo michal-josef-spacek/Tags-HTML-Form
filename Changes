@@ -1,4 +1,5 @@
 0.06
+ - Fix checks for defined value = 0.
 
 0.05 2022-10-26T02:36:47+02:00
  - Add Select and Option objects.
