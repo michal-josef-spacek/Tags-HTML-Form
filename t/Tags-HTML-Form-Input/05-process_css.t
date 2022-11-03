@@ -38,6 +38,10 @@ is_deeply(
 		['d', 'cursor', 'pointer'],
 		['e'],
 
+		['s', 'input[type=submit][disabled=disabled]'],
+		['d', 'background-color', '#888888'],
+		['e'],
+
 		['s', 'input[type=text]'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
@@ -79,6 +83,10 @@ is_deeply(
 		['d', 'border', 'none'],
 		['d', 'border-radius', '4px'],
 		['d', 'cursor', 'pointer'],
+		['e'],
+
+		['s', 'input.form-input[type=submit][disabled=disabled]'],
+		['d', 'background-color', '#888888'],
 		['e'],
 
 		['s', 'input.form-input[type=text]'],
