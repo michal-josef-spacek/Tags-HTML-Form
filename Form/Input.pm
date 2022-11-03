@@ -94,7 +94,7 @@ sub _process_css {
 		['d', 'cursor', 'pointer'],
 		['e'],
 
-		['s', 'input'.$css_class],
+		['s', 'input'.$css_class.'[type=text]'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],

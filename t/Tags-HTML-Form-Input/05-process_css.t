@@ -38,7 +38,7 @@ is_deeply(
 		['d', 'cursor', 'pointer'],
 		['e'],
 
-		['s', 'input'],
+		['s', 'input[type=text]'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],
@@ -81,7 +81,7 @@ is_deeply(
 		['d', 'cursor', 'pointer'],
 		['e'],
 
-		['s', 'input.form-input'],
+		['s', 'input.form-input[type=text]'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],
