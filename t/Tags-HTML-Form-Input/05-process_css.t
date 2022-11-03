@@ -43,6 +43,8 @@ is_deeply(
 		['e'],
 
 		['s', 'input[type=text]'],
+		['s', 'input[type=date]'],
+		['s', 'input[type=number]'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],
@@ -90,6 +92,8 @@ is_deeply(
 		['e'],
 
 		['s', 'input.form-input[type=text]'],
+		['s', 'input.form-input[type=date]'],
+		['s', 'input.form-input[type=number]'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
 		['d', 'margin', '8px 0'],

@@ -1,6 +1,6 @@
 0.06
  - Add CSS for disabled submit.
- - Change CSS for type=text only.
+ - Change CSS for type=text|date|number only.
  - Fix checks for defined value = 0.
 
 0.05 2022-10-26T02:36:47+02:00

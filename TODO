@@ -8,7 +8,8 @@ TODO
 13. Helper for textarea element.
 14. Helper for button element.
 15. CSS style for option.
-16.
+16. Test other input[type=*] and CSS. And add selector to CSS.
+17.
 
 Applied
 =======
