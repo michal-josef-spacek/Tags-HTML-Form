@@ -24,6 +24,9 @@ sub _process {
 
 	$self->{'tags'}->put(
 		['b', 'input'],
+		$input->autofocus ? (
+			['a', 'autofocus', 'autofocus'],
+		) : (),
 		defined $input->css_class ? (
 			['a', 'class', $input->css_class],
 		) : (),
