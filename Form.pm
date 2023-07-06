@@ -329,7 +329,7 @@ Constructor.
 
 =item * C<css>
 
-'CSS::Struct::Output' object for L<process_css> processing.
+'L<CSS::Struct::Output>' object for L<process_css> processing.
 
 Default value is undef.
 
@@ -337,7 +337,7 @@ Default value is undef.
 
 Data object for form.
 
-Could be a 'Data::HTML::Form' instance.
+Could be a 'L<Data::HTML::Form>' instance.
 
 Default value is instance with 'form' css class.
 
@@ -345,13 +345,13 @@ Default value is instance with 'form' css class.
 
 Data object for submit.
 
-Could be a 'Data::HTML::Form::Input' or 'Data::HTML::Button' instance.
+Could be a 'L<Data::HTML::Form::Input>' or 'L<Data::HTML::Button>' instance.
 
 Default value is instance with 'Save' submit value.
 
 =item * C<tags>
 
-'Tags::Output' object.
+'L<Tags::Output>' object.
 
 Default value is undef.
 
@@ -379,7 +379,7 @@ Returns undef.
 
  $obj->process_css;
 
-Process CSS::Struct structure for output.
+Process L<CSS::Struct> structure for output.
 
 Returns undef.
 
