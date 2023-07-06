@@ -329,7 +329,7 @@ Constructor.
 
 =item * C<css>
 
-'L<CSS::Struct::Output>' object for L<process_css> processing.
+'L<CSS::Struct::Output>' object for L</process_css> processing.
 
 Default value is undef.
 
@@ -351,7 +351,7 @@ Default value is instance with 'Save' submit value.
 
 =item * C<tags>
 
-'L<Tags::Output>' object.
+'L<Tags::Output>' object for L</process> processing.
 
 Default value is undef.
 
@@ -361,7 +361,7 @@ Default value is undef.
 
  $obj->process(@fields);
 
-Process Tags structure for fields defined in C<@fields> to output.
+Process L<Tags> structure for fields defined in C<@fields> to output.
 
 Accepted items in C<@fields> are objects:
 

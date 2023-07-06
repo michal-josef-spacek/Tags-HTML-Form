@@ -1,6 +1,7 @@
 0.08
  - Add links to doc.
  - Fix typo in doc.
+ - Improve links in doc.
  - Update copyright years.
  - Update Module::Install to 1.21 version.
 
