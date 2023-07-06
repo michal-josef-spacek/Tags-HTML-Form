@@ -9,7 +9,7 @@ use Error::Pure qw(err);
 use Scalar::Util qw(blessed);
 use Tags::HTML::Form::Select::Option;
 
-our $VERSION = 0.08;
+our $VERSION = 0.09;
 
 sub new {
 	my ($class, @params) = @_;
@@ -257,6 +257,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.08
+0.09
 
 =cut
