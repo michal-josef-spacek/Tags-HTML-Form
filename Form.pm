@@ -337,7 +337,7 @@ Default value is undef.
 
 Data object for form.
 
-Could ve a 'Data::HTML::Form' instance.
+Could be a 'Data::HTML::Form' instance.
 
 Default value is instance with 'form' css class.
 
