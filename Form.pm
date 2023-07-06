@@ -241,6 +241,25 @@ sub _process_css {
 		$self->{'select'}->process_css($first_select);
 	}
 
+	# CSS style for button.
+	# XXX Duplicit with Tags::HTML::Form::Input for submit.
+	$self->{'css'}->put(
+		['s', '.'.$self->{'form'}->css_class.' button'],
+		['d', 'width', '100%'],
+		['d', 'background-color', '#4CAF50'],
+		['d', 'color', 'white'],
+		['d', 'padding', '14px 20px'],
+		['d', 'margin', '8px 0'],
+		['d', 'border', 'none'],
+		['d', 'border-radius', '4px'],
+		['d', 'cursor', 'pointer'],
+		['e'],
+
+		['s', '.'.$self->{'form'}->css_class.' button:hover'],
+		['d', 'background-color', '#45a049'],
+		['e'],
+	);
+
 	return;
 }
 
