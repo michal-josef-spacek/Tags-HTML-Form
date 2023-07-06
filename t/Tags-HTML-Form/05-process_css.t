@@ -24,6 +24,16 @@ is_deeply(
 		['d', 'padding', '20px'],
 		['e'],
 
+		['s', '.form fieldset'],
+		['d', 'padding', '20px'],
+		['d', 'border-radius', '15px'],
+		['e'],
+
+		['s', '.form legend'],
+		['d', 'padding-left', '10px'],
+		['d', 'padding-right', '10px'],
+		['e'],
+
 		['s', '.form textarea'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],

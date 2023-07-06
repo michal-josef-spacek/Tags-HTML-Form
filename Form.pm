@@ -206,6 +206,16 @@ sub _process_css {
 		['d', 'padding', '20px'],
 		['e'],
 
+		['s', '.'.$self->{'form'}->css_class.' fieldset'],
+		['d', 'padding', '20px'],
+		['d', 'border-radius', '15px'],
+		['e'],
+
+		['s', '.'.$self->{'form'}->css_class.' legend'],
+		['d', 'padding-left', '10px'],
+		['d', 'padding-right', '10px'],
+		['e'],
+
 		['s', '.'.$self->{'form'}->css_class.' textarea'],
 		['d', 'width', '100%'],
 		['d', 'padding', '12px 20px'],
