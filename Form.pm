@@ -251,7 +251,7 @@ sub _tags_button {
 		$self->{'tags'}->put(@{$object->data});
 	} else {
 		$self->{'tags'}->put(
-			['d', $object->data],
+			map { (['d', $_]) } @{$object->data},
 		);
 	}
 	$self->{'tags'}->put(
