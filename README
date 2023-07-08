@@ -14,6 +14,12 @@ METHODS
 
     Constructor.
 
+    *       "background_color"
+
+            Form background color.
+
+            Default value is '#f2f2f2'.
+
     *       "css"
 
             'CSS::Struct::Output' object for "process_css" processing.

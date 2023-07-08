@@ -1,4 +1,5 @@
 0.09
+ - Add 'background_color' parameter.
 
 0.08 2023-07-06T21:13:49+02:00
  - Add CSS style for button.

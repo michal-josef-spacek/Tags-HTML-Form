@@ -21,8 +21,11 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['form', 'input', 'select', 'submit'], @params);
+		['background_color', 'form', 'input', 'select', 'submit'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
+
+	# Background color.
+	$self->{'background_color'} = '#f2f2f2';
 
 	# Form.
 	$self->{'form'} = Data::HTML::Form->new(
@@ -202,7 +205,7 @@ sub _process_css {
 	$self->{'css'}->put(
 		['s', '.'.$self->{'form'}->css_class],
 		['d', 'border-radius', '5px'],
-		['d', 'background-color', '#f2f2f2'],
+		['d', 'background-color', $self->{'background_color'}],
 		['d', 'padding', '20px'],
 		['e'],
 
@@ -355,6 +358,12 @@ Tags::HTML::Form - Tags helper for form.
 Constructor.
 
 =over 8
+
+=item * C<background_color>
+
+Form background color.
+
+Default value is '#f2f2f2'.
 
 =item * C<css>
 
