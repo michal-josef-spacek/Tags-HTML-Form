@@ -37,6 +37,7 @@ requires:
   Error::Pure: 0
   Scalar::Util: 0
   Tags::HTML: 0.04
+  Tags::HTML::Textarea: 0
   perl: 5.8.0
 resources:
   bugtracker: https://github.com/michal-josef-spacek/Tags-HTML-Form/issues

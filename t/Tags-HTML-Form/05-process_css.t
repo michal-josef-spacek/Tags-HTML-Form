@@ -34,16 +34,6 @@ is_deeply(
 		['d', 'padding-right', '10px'],
 		['e'],
 
-		['s', '.form textarea'],
-		['d', 'width', '100%'],
-		['d', 'padding', '12px 20px'],
-		['d', 'margin', '8px 0'],
-		['d', 'display', 'inline-block'],
-		['d', 'border', '1px solid #ccc'],
-		['d', 'border-radius', '4px'],
-		['d', 'box-sizing', 'border-box'],
-		['e'],
-
 		['s', '.form-required'],
 		['d', 'color', 'red'],
 		['e'],

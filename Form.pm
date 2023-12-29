@@ -12,6 +12,7 @@ use List::Util qw(first);
 use Scalar::Util qw(blessed);
 use Tags::HTML::Form::Input;
 use Tags::HTML::Form::Select;
+use Tags::HTML::Textarea;
 
 our $VERSION = 0.09;
 
@@ -21,7 +22,7 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['background_color', 'form', 'input', 'select', 'submit'], @params);
+		['background_color', 'form', 'input', 'select', 'submit', 'textarea'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
 
 	# Background color.
@@ -46,6 +47,9 @@ sub new {
 		'data_type' => 'tags',
 		'type' => 'submit',
 	);
+
+	# Textarea object.
+	$self->{'textarea'} = undef;
 
 	# Process params.
 	set_params($self, @{$object_params_ar});
@@ -101,6 +105,18 @@ sub new {
 		}
 	}
 
+	# Textarea object.
+	if (! defined $self->{'textarea'}) {
+		$self->{'select'} = Tags::HTML::Textarea->new(
+			'css' => $self->{'css'},
+			'tags' => $self->{'tags'},
+		),
+	} else {
+		if (! blessed($self->{'textarea'}) || $self->{'textarea'}->isa('Tags::HTML::Textarea')) {
+			err "Parameter 'textarea' must be a 'Tags::HTML::Textarea' instance.";
+		}
+	}
+
 	# Object.
 	return $self;
 }
@@ -114,8 +130,8 @@ sub _process {
 		if (! defined $field
 			|| ! blessed($field)
 			|| (! $field->isa('Data::HTML::Form::Input')
-			&& ! $field->isa('Data::HTML::Textarea')
-			&& ! $field->isa('Data::HTML::Form::Select'))) {
+			&& ! $field->isa('Data::HTML::Form::Select')
+			&& ! $field->isa('Data::HTML::Textarea'))) {
 
 			err "Form item must be a 'Data::HTML::Form::Input', ".
 				"'Data::HTML::Textarea' or 'Data::HTML::Form::Select' instance.";
@@ -169,7 +185,7 @@ sub _process {
 		} elsif ($field->isa('Data::HTML::Form::Select')) {
 			$self->{'select'}->process($field);
 		} else {
-			$self->_tags_textarea($field);
+			$self->{'textarea'}->process($field);
 		}
 	}
 
@@ -219,16 +235,6 @@ sub _process_css {
 		['d', 'padding-right', '10px'],
 		['e'],
 
-		['s', '.'.$self->{'form'}->css_class.' textarea'],
-		['d', 'width', '100%'],
-		['d', 'padding', '12px 20px'],
-		['d', 'margin', '8px 0'],
-		['d', 'display', 'inline-block'],
-		['d', 'border', '1px solid #ccc'],
-		['d', 'border-radius', '4px'],
-		['d', 'box-sizing', 'border-box'],
-		['e'],
-
 		['s', '.'.$self->{'form'}->css_class.'-required'],
 		['d', 'color', 'red'],
 		['e'],
@@ -242,6 +248,10 @@ sub _process_css {
 	my $first_select = first { ref $_ eq 'Data::HTML::Form::Select' } @fields;
 	if (defined $first_select) {
 		$self->{'select'}->process_css($first_select);
+	}
+	my $first_textarea = first { ref $_ eq 'Data::HTML::Textarea' } @fields;
+	if (defined $first_textarea) {
+		$self->{'textarea'}->process_css($first_textarea);
 	}
 
 	# CSS style for button.
@@ -288,42 +298,6 @@ sub _tags_button {
 	}
 	$self->{'tags'}->put(
 		['e', 'button'],
-	);
-
-	return;
-}
-
-sub _tags_textarea {
-	my ($self, $object) = @_;
-
-	$self->{'tags'}->put(
-		['b', 'textarea'],
-		defined $object->css_class ? (
-			['a', 'class', $object->css_class],
-		) : (),
-		defined $object->id ? (
-			['a', 'name', $object->id],
-			['a', 'id', $object->id],
-		) : (),
-		defined $object->placeholder ? (
-			['a', 'placeholder', $object->placeholder],
-		) : (),
-		defined $object->readonly ? (
-			['a', 'readonly', 'readonly'],
-		) : (),
-		defined $object->disabled ? (
-			['a', 'disabled', 'disabled'],
-		) : (),
-		defined $object->cols ? (
-			['a', 'cols', $object->cols],
-		) : (),
-		defined $object->rows ? (
-			['a', 'rows', $object->rows],
-		) : (),
-		defined $object->value ? (
-			['d', $object->value],
-		) : (),
-		['e', 'textarea'],
 	);
 
 	return;

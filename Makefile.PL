@@ -24,6 +24,7 @@ requires 'Data::HTML::Form' => 0.04;
 requires 'Error::Pure' => 0;
 requires 'Scalar::Util' => 0;
 requires 'Tags::HTML' => 0.04;
+requires 'Tags::HTML::Textarea' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Tags-HTML-Form/issues';
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Tags-HTML-Form';
 resources 'repository' => 'git://github.com/michal-josef-spacek/Tags-HTML-Form';
