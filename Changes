@@ -1,5 +1,6 @@
 0.09
  - Add 'background_color' parameter.
+ - Add tests.
  - Rewrite to use of Tags::HTML::Textarea.
 
 0.08 2023-07-06T21:13:49+02:00
