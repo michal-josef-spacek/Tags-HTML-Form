@@ -13,6 +13,7 @@ use Scalar::Util qw(blessed);
 use Tags::HTML::Form::Input;
 use Tags::HTML::Form::Select;
 use Tags::HTML::Textarea;
+use Tags::HTML::Button;
 
 our $VERSION = 0.09;
 
@@ -22,11 +23,15 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['background_color', 'form', 'input', 'select', 'submit', 'textarea'], @params);
+		['background_color', 'button', 'form', 'input', 'select',
+		'submit', 'textarea'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
 
 	# Background color.
 	$self->{'background_color'} = '#f2f2f2';
+
+	# Button object.
+	$self->{'button'} = undef;
 
 	# Form.
 	$self->{'form'} = Data::HTML::Form->new(
@@ -79,6 +84,18 @@ sub new {
 	}
 	if ($self->{'submit'}->type ne 'submit') {
 		err "Parameter 'submit' instance has bad type.";
+	}
+
+	# Button object.
+	if (! defined $self->{'button'}) {
+		$self->{'button'} = Tags::HTML::Button->new(
+			'css' => $self->{'css'},
+			'tags' => $self->{'tags'},
+		);
+	} else {
+		if (! blessed($self->{'button'}) || $self->{'button'}->isa('Tags::HTML::Button')) {
+			err "Parameter 'button' must be a 'Tags::HTML::Button' instance.";
+		}
 	}
 
 	# Input object.
@@ -201,7 +218,7 @@ sub _process {
 	if ($self->{'submit'}->isa('Data::HTML::Form::Input')) {
 		$self->{'input'}->process($self->{'submit'});
 	} else {
-		$self->_tags_button($self->{'submit'});
+		$self->{'button'}->process($self->{'submit'});
 	}
 	$self->{'tags'}->put(
 		['e', 'p'],
@@ -254,51 +271,9 @@ sub _process_css {
 		$self->{'textarea'}->process_css($first_textarea);
 	}
 
-	# CSS style for button.
-	# XXX Duplicit with Tags::HTML::Form::Input for submit.
-	$self->{'css'}->put(
-		['s', '.'.$self->{'form'}->css_class.' button'],
-		['d', 'width', '100%'],
-		['d', 'background-color', '#4CAF50'],
-		['d', 'color', 'white'],
-		['d', 'padding', '14px 20px'],
-		['d', 'margin', '8px 0'],
-		['d', 'border', 'none'],
-		['d', 'border-radius', '4px'],
-		['d', 'cursor', 'pointer'],
-		['e'],
-
-		['s', '.'.$self->{'form'}->css_class.' button:hover'],
-		['d', 'background-color', '#45a049'],
-		['e'],
-	);
-
-	return;
-}
-
-sub _tags_button {
-	my ($self, $object) = @_;
-
-	$self->{'tags'}->put(
-		['b', 'button'],
-		['a', 'type', $object->type],
-		defined $object->name ? (
-			['a', 'name', $object->name],
-		) : (),
-		defined $object->value ? (
-			['a', 'value', $object->value],
-		) : (),
-	);
-	if ($object->data_type eq 'tags') {
-		$self->{'tags'}->put(@{$object->data});
-	} else {
-		$self->{'tags'}->put(
-			map { (['d', $_]) } @{$object->data},
-		);
+	if ($self->{'submit'}->isa('Data::HTML::Button')) {
+		$self->{'button'}->process_css($self->{'submit'});
 	}
-	$self->{'tags'}->put(
-		['e', 'button'],
-	);
 
 	return;
 }

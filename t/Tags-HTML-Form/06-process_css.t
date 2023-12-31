@@ -38,7 +38,7 @@ is_deeply(
 		['d', 'color', 'red'],
 		['e'],
 
-		['s', '.form button'],
+		['s', 'button'],
 		['d', 'width', '100%'],
 		['d', 'background-color', '#4CAF50'],
 		['d', 'color', 'white'],
@@ -49,7 +49,7 @@ is_deeply(
 		['d', 'cursor', 'pointer'],
 		['e'],
 
-		['s', '.form button:hover'],
+		['s', 'button:hover'],
 		['d', 'background-color', '#45a049'],
 		['e'],
 	],
