@@ -380,13 +380,16 @@ Returns undef.
          From Tags::HTML::new():
                  Parameter 'css' must be a 'CSS::Struct::Output::*' class.
                  Parameter 'tags' must be a 'Tags::Output::*' class.
+         Parameter 'button' must be a 'Tags::HTML::Button' instance.
          Parameter 'form' is required.
          Parameter 'form' must be a 'Data::HTML::Form' instance.
          Parameter 'form' must define 'css_class' parameter.
          Parameter 'input' must be a 'Tags::HTML::Form::Input' instance.
+         Parameter 'select' must be a 'Tags::HTML::Form::Select' instance.
          Parameter 'submit' instance has bad type.
          Parameter 'submit' is required.
          Parameter 'submit' must be a 'Data::HTML::Form::Input' instance.
+         Parameter 'textarea' must be a 'Tags::HTML::Textarea' instance.
 
  process():
          From Tags::HTML::process():
