@@ -1,6 +1,7 @@
 0.09
  - Add 'background_color' parameter.
  - Add tests.
+ - Rewrite code to use helper to check and set Tags::HTML objects.
  - Rewrite to use of Tags::HTML::Button.
  - Rewrite to use of Tags::HTML::Textarea.
 

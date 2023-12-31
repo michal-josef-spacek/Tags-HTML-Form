@@ -86,53 +86,10 @@ sub new {
 		err "Parameter 'submit' instance has bad type.";
 	}
 
-	# Button object.
-	if (! defined $self->{'button'}) {
-		$self->{'button'} = Tags::HTML::Button->new(
-			'css' => $self->{'css'},
-			'tags' => $self->{'tags'},
-		);
-	} else {
-		if (! blessed($self->{'button'}) || $self->{'button'}->isa('Tags::HTML::Button')) {
-			err "Parameter 'button' must be a 'Tags::HTML::Button' instance.";
-		}
-	}
-
-	# Input object.
-	if (! defined $self->{'input'}) {
-		$self->{'input'} = Tags::HTML::Form::Input->new(
-			'css' => $self->{'css'},
-			'tags' => $self->{'tags'},
-		);
-	} else {
-		if (! blessed($self->{'input'}) || $self->{'input'}->isa('Tags::HTML::Form::Input')) {
-			err "Parameter 'input' must be a 'Tags::HTML::Form::Input' instance.";
-		}
-	}
-
-	# Select object.
-	if (! defined $self->{'select'}) {
-		$self->{'select'} = Tags::HTML::Form::Select->new(
-			'css' => $self->{'css'},
-			'tags' => $self->{'tags'},
-		),
-	} else {
-		if (! blessed($self->{'select'}) || $self->{'select'}->isa('Tags::HTML::Form::Select')) {
-			err "Parameter 'select' must be a 'Tags::HTML::Form::Select' instance.";
-		}
-	}
-
-	# Textarea object.
-	if (! defined $self->{'textarea'}) {
-		$self->{'select'} = Tags::HTML::Textarea->new(
-			'css' => $self->{'css'},
-			'tags' => $self->{'tags'},
-		),
-	} else {
-		if (! blessed($self->{'textarea'}) || $self->{'textarea'}->isa('Tags::HTML::Textarea')) {
-			err "Parameter 'textarea' must be a 'Tags::HTML::Textarea' instance.";
-		}
-	}
+	$self->_tags_object_check('button', 'Tags::HTML::Button');
+	$self->_tags_object_check('input', 'Tags::HTML::Form::Input');
+	$self->_tags_object_check('select', 'Tags::HTML::Form::Select');
+	$self->_tags_object_check('textarea', 'Tags::HTML::Textarea');
 
 	# Object.
 	return $self;
@@ -273,6 +230,23 @@ sub _process_css {
 
 	if ($self->{'submit'}->isa('Data::HTML::Button')) {
 		$self->{'button'}->process_css($self->{'submit'});
+	}
+
+	return;
+}
+
+sub _tags_object_check {
+	my ($self, $param, $class) = @_;
+
+	if (! defined $self->{$param}) {
+		$self->{$param} = $class->new(
+			'css' => $self->{'css'},
+			'tags' => $self->{'tags'},
+		);
+	} else {
+		if (! blessed($self->{$param}) || $self->{$param}->isa($class)) {
+			err "Parameter '$param' must be a '$class' instance.";
+		}
 	}
 
 	return;
