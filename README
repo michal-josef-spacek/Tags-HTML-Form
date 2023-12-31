@@ -26,6 +26,13 @@ METHODS
 
             Default value is undef.
 
+    *       "button"
+
+            Tags::HTML::Button instance to process button.
+
+            Default value is Tags::HTML::Button object with 'tags' and 'css'
+            parameter inherited with main object.
+
     *       "form"
 
             Data object for form.
@@ -33,6 +40,20 @@ METHODS
             Could be a 'Data::HTML::Form' instance.
 
             Default value is instance with 'form' css class.
+
+    *       "input"
+
+            Tags::HTML::Form::Input instance to process inputs.
+
+            Default value is Tags::HTML::Form::Input object with 'tags' and
+            'css' parameter inherited with main object.
+
+    *       "select"
+
+            Tags::HTML::Form::Select instance to process select elements.
+
+            Default value is Tags::HTML::Form::Select object with 'tags' and
+            'css' parameter inherited with main object.
 
     *       "submit"
 
@@ -48,6 +69,13 @@ METHODS
             'Tags::Output' object for "process" processing.
 
             Default value is undef.
+
+    *       "textarea"
+
+            Tags::HTML::Textarea instance to process textarea elements.
+
+            Default value is Tags::HTML::Textarea object with 'tags' and
+            'css' parameter inherited with main object.
 
   "process"
      $obj->process(@fields);

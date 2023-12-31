@@ -320,6 +320,13 @@ Default value is '#f2f2f2'.
 
 Default value is undef.
 
+=item * C<button>
+
+L<Tags::HTML::Button> instance to process button.
+
+Default value is L<Tags::HTML::Button> object with 'tags' and 'css' parameter
+inherited with main object.
+
 =item * C<form>
 
 Data object for form.
@@ -327,6 +334,20 @@ Data object for form.
 Could be a 'L<Data::HTML::Form>' instance.
 
 Default value is instance with 'form' css class.
+
+=item * C<input>
+
+L<Tags::HTML::Form::Input> instance to process inputs.
+
+Default value is L<Tags::HTML::Form::Input> object with 'tags' and 'css' parameter
+inherited with main object.
+
+=item * C<select>
+
+L<Tags::HTML::Form::Select> instance to process select elements.
+
+Default value is L<Tags::HTML::Form::Select> object with 'tags' and 'css' parameter
+inherited with main object.
 
 =item * C<submit>
 
@@ -341,6 +362,13 @@ Default value is instance with 'Save' submit value.
 'L<Tags::Output>' object for L</process> processing.
 
 Default value is undef.
+
+=item * C<textarea>
+
+L<Tags::HTML::Textarea> instance to process textarea elements.
+
+Default value is L<Tags::HTML::Textarea> object with 'tags' and 'css' parameter
+inherited with main object.
 
 =back
 
